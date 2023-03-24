@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function EditBudget(props) {
+function AddBudget(props) {
   const [show, setShow] = useState(false);
-  const [name, setName] = useState(props.name);
-  const [purpose, setPurpose] = useState(props.purpose);
+
+  const [name, setName] = useState("");
+  const [purpose, setPurpose] = useState("");
+  const [img, setImg] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -14,9 +16,9 @@ function EditBudget(props) {
     <>
       <button
         onClick={handleShow}
-        className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+        className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-600 rounded flex mx-auto"
       >
-        Update
+        Add Budget
       </button>
 
       <Modal
@@ -26,33 +28,35 @@ function EditBudget(props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Update Budget</Modal.Title>
+          <Modal.Title>Add Budget</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form
             id="editModal"
             className="w-full max-w-sm"
             onSubmit={(e) => {
-              handleClose();
               e.preventDefault();
-              console.log(props.id, name, purpose);
-              props.updateBudget(props.id, name, purpose);
+              setName("");
+              setPurpose("");
+              setImg("");
+              props.newBudget(name, purpose, img);
             }}
           >
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  for="name"
+                  htmlFor="name"
                 >
                   Name
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   id="name"
                   type="text"
+                  placeholder="Personal"
                   value={name}
                   onChange={(e) => {
                     setName(e.target.value);
@@ -64,19 +68,42 @@ function EditBudget(props) {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  for="Role"
+                  htmlFor="Purpose"
                 >
                   Purpose
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="Role"
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                  id="Purpose"
+                  placeholder="Using this for personal finance"
                   type="text"
                   value={purpose}
                   onChange={(e) => {
                     setPurpose(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
+                <label
+                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                  htmlFor="img"
+                >
+                  Image URL
+                </label>
+              </div>
+              <div className="md:w-2/3">
+                <input
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                  id="img"
+                  placeholder="www.google.com/image.jpg"
+                  type="text"
+                  value={img}
+                  onChange={(e) => {
+                    setImg(e.target.value);
                   }}
                 />
               </div>
@@ -88,7 +115,7 @@ function EditBudget(props) {
             Close
           </Button>
           <Button type="submit" form="editModal" variant="primary">
-            Update
+            Add
           </Button>
         </Modal.Footer>
       </Modal>
@@ -96,4 +123,4 @@ function EditBudget(props) {
   );
 }
 
-export default EditBudget;
+export default AddBudget;
