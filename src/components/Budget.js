@@ -1,4 +1,4 @@
-import EditBudget from "./EditBudget";
+import editBudget from "./EditBudget";
 
 function Budget(props) {
   return (
@@ -9,7 +9,7 @@ function Budget(props) {
         alt="Budget"
         draggable="false"
       />
-      <div className="text-center space-y-2 sm:text-left">
+      <div className="text-center space-y-3 sm:text-left">
         <div className="space-y-0.5">
           <p className="text-lg text-black font-semibold">
             {props.name}
@@ -18,16 +18,11 @@ function Budget(props) {
             {props.purpose}
           </p>
         </div>
-        <div className="space-x-1">
+        <div className="space-x-2">
           <button className="px-4 py-1 text-sm text-blue-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-blue-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
             Open
           </button>
-          <EditBudget
-            id={props.id}
-            name={props.name}
-            purpose={props.purpose}
-            updateBudget={props.updateBudget}
-          />
+          {props.editBudget}
         </div>
       </div>
     </div>

@@ -17,3 +17,12 @@ is being spent.
 ## Project Information
 
 Vikozo is currently being built with React, Tailwind CSS, Django and MySQL.
+
+## Screenshots and Updates
+
+<ul>
+  <li> <b> March 24th 2023 </b> - Current look of the app. User can add budgets and update the information.
+  <br>
+  <br>
+  <video src="https://user-images.githubusercontent.com/60556017/227674624-e897cbe6-5f0a-4e2e-8a91-592cf2ee881a.mp4"/>
+</ul>
